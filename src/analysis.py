@@ -125,3 +125,36 @@ def browsing_depth_effect():
         {'product_pages': 140, 'conversion_prob': 0.155},
     ]
     return pd.DataFrame(data)
+
+def recommendations():
+    """
+    Business recommendations derived from model findings.
+    Hardcoded — translates SHAP findings into actionable business interventions.
+    """
+    data = [
+        {
+            'feature': 'PageValues',
+            'finding': 'Conversion spikes from 8% to 55%+ as soon as PageValues > 0. 77.9% of sessions never reach high-value pages.',
+            'action': 'Surface high-value pages earlier via personalized recommendations, "Best Sellers" modules, and smarter search ranking.',
+            'tradeoff': 'Requires strong product data infrastructure and A/B testing to avoid over-promoting low-margin items.'
+        },
+        {
+            'feature': 'Exit Rate',
+            'finding': 'Conversion drops 30% as exit rate increases from 0 to 0.2. High exit = disengagement, not comparison.',
+            'action': 'Deploy exit-intent popups with targeted discounts or "Notify me when on sale" to capture email without margin loss.',
+            'tradeoff': 'Overuse of discounts trains customers to wait for deals and erodes long-term brand value.'
+        },
+        {
+            'feature': 'Browsing Depth',
+            'finding': 'Users viewing 0-5 pages convert at 21.5%. Users viewing 80+ pages convert at 15.5% — a 25% decline.',
+            'action': 'Reduce decision friction. Highlight recommended choice, simplify comparisons, add internal comparison tools to keep users on site.',
+            'tradeoff': 'Excessive curation limits product discovery and may reduce basket size for users who would have bought more.'
+        },
+        {
+            'feature': 'Month (Seasonality)',
+            'finding': 'November converts at 25.4% — 2.3x the baseline of ~11%. Driven by winter onset in Turkey, not Black Friday.',
+            'action': 'Invest in lower-intent months (Mar, May) with loyalty programs and retention campaigns rather than over-investing in already-high November.',
+            'tradeoff': 'Shifting spend away from November risks leaving high-intent demand uncaptured during peak window.'
+        },
+    ]
+    return pd.DataFrame(data)
