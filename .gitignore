@@ -1,4 +1,38 @@
+# Data files
 data/
-.DS_Store
+*.csv
+*.zip
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# Streamlit
+.streamlit/
+
+# Assets (except precomputed)
