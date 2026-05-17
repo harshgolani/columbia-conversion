@@ -38,3 +38,13 @@
 - Narrow CV to Holdout gap (0.9306 → 0.9377) confirms no overfitting — model generalizes well
 - PPV of 0.61 means 39% of predicted converters won't actually buy — precision limitation noted
 - 4 models compared: Keras (x2), XGBoost, LightGBM — all competitive, Keras wins on AUC
+
+## PageValues Effect (Tab 3)
+
+- Partial dependence curve hardcoded from DataRobot slide output
+- Key finding: conversion spikes from 8% to 55%+ the moment PageValues > 0
+- After that spike, conversion grows gradually to ~70% at PageValues = 50
+- 77.9% of sessions have zero PageValues (not 84.5% — that's the non-conversion rate, different metric)
+- 84.5% non-conversion ≠ 77.9% zero PageValues — these are related but distinct
+- Median PageValues for sessions that DO have it: 16.7
+- Insight: funnel is broken before checkout — most users never reach pages that drive conversion
