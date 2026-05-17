@@ -48,3 +48,26 @@
 - 84.5% non-conversion ≠ 77.9% zero PageValues — these are related but distinct
 - Median PageValues for sessions that DO have it: 16.7
 - Insight: funnel is broken before checkout — most users never reach pages that drive conversion
+
+## Behavioral Patterns (Tab 4)
+
+### Monthly Conversion
+- November actual conversion: 25.4% (2,998 sessions, 760 purchases)
+- Stronger than slide estimate of 22-23% — finding holds and is stronger
+- Baseline months (Mar, May): 10-11% conversion
+- November is 2.3x baseline — not just 40-60% higher as slides stated
+- February excluded from insights — only 184 sessions, 1.6% conversion, too small to be meaningful
+- NaN month rows filtered out (288 sessions with unknown month)
+- June missing from dataset entirely
+- Dual driver thesis: winter onset in Turkey (Istanbul avg 10-17°C in November) + potential Black Friday effect
+
+### Exit Rate Effect
+- Hardcoded from DataRobot partial dependence output
+- Conversion drops from 19% to 13.2% as exit rate goes from 0 to 0.2
+- 30% relative decline confirmed
+
+### Browsing Depth Effect
+- Hardcoded from DataRobot partial dependence output
+- Conversion drops from 21.5% to 15.5% as product pages increase from 0 to 80+
+- 25% relative decline confirmed
+- Window shopper thesis: high browsing = comparison shopping across sites, not engagement

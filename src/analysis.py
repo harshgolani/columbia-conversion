@@ -70,3 +70,58 @@ def pagevalues_distribution(df):
         'nonzero_pagevalues_pct': nonzero_pv,
         'median_nonzero_pagevalues': median_pv
     }
+
+def monthly_conversion(df):
+    monthly = df.groupby('Month')['Revenue'].agg(['sum', 'count']).reset_index()
+    monthly.columns = ['month', 'purchases', 'sessions']
+    monthly['conversion_rate'] = round(monthly['purchases'] / monthly['sessions'] * 100, 1)
+
+    month_order = ['Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    monthly = monthly[monthly['month'].isin(month_order)]
+    monthly['month'] = pd.Categorical(monthly['month'], categories=month_order, ordered=True)
+    monthly = monthly.sort_values('month').reset_index(drop=True)
+
+    return monthly
+
+def exit_rate_effect():
+    """
+    Hardcoded from DataRobot partial dependence plot.
+    Key finding: conversion drops 30% as exit rate increases from 0 to 0.2.
+    """
+    data = [
+        {'exit_rate': 0.00, 'conversion_prob': 0.19},
+        {'exit_rate': 0.01, 'conversion_prob': 0.18},
+        {'exit_rate': 0.02, 'conversion_prob': 0.17},
+        {'exit_rate': 0.03, 'conversion_prob': 0.16},
+        {'exit_rate': 0.04, 'conversion_prob': 0.155},
+        {'exit_rate': 0.05, 'conversion_prob': 0.150},
+        {'exit_rate': 0.06, 'conversion_prob': 0.148},
+        {'exit_rate': 0.08, 'conversion_prob': 0.145},
+        {'exit_rate': 0.10, 'conversion_prob': 0.140},
+        {'exit_rate': 0.14, 'conversion_prob': 0.137},
+        {'exit_rate': 0.18, 'conversion_prob': 0.135},
+        {'exit_rate': 0.20, 'conversion_prob': 0.132},
+    ]
+    return pd.DataFrame(data)
+
+def browsing_depth_effect():
+    """
+    Hardcoded from DataRobot partial dependence plot.
+    Key finding: conversion drops 25% as product pages viewed increases from 0 to 80+.
+    Window shoppers browse more but buy less.
+    """
+    data = [
+        {'product_pages': 0, 'conversion_prob': 0.215},
+        {'product_pages': 5, 'conversion_prob': 0.200},
+        {'product_pages': 10, 'conversion_prob': 0.190},
+        {'product_pages': 20, 'conversion_prob': 0.178},
+        {'product_pages': 30, 'conversion_prob': 0.170},
+        {'product_pages': 40, 'conversion_prob': 0.165},
+        {'product_pages': 50, 'conversion_prob': 0.161},
+        {'product_pages': 60, 'conversion_prob': 0.158},
+        {'product_pages': 80, 'conversion_prob': 0.156},
+        {'product_pages': 100, 'conversion_prob': 0.155},
+        {'product_pages': 120, 'conversion_prob': 0.155},
+        {'product_pages': 140, 'conversion_prob': 0.155},
+    ]
+    return pd.DataFrame(data)
