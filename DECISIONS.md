@@ -30,3 +30,11 @@
 - Users browsing 80+ product pages convert at ~15% (25% decline)
 - Interpretation: high browsing = comparison shopping across sites, not high engagement
 - These users likely have multiple tabs open comparing Columbia vs competitors
+
+## Model Comparison (Tab 2)
+
+- All model results hardcoded from DataRobot output — we don't have model files, only the findings
+- Champion: Keras Neural Network (100% data) — CV AUC 0.9306, Holdout AUC 0.9377
+- Narrow CV to Holdout gap (0.9306 → 0.9377) confirms no overfitting — model generalizes well
+- PPV of 0.61 means 39% of predicted converters won't actually buy — precision limitation noted
+- 4 models compared: Keras (x2), XGBoost, LightGBM — all competitive, Keras wins on AUC
