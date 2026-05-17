@@ -71,3 +71,12 @@
 - Conversion drops from 21.5% to 15.5% as product pages increase from 0 to 80+
 - 25% relative decline confirmed
 - Window shopper thesis: high browsing = comparison shopping across sites, not engagement
+
+## Recommendations (Tab 5)
+
+- All recommendations derived directly from SHAP findings and partial dependence plots
+- PageValues recommendation prioritized first — 100% relative importance in champion model
+- Exit rate recommendation includes "Notify me when on sale" as margin-safe alternative to discounting
+- Browsing depth recommendation focuses on internal comparison tools — keep users on site rather than losing them to competitors
+- Seasonality recommendation deliberately counter-intuitive: invest in LOW months not November peak, because November already converts well without extra spend
+- Each recommendation includes a tradeoff — shows business maturity, not just technical analysis
