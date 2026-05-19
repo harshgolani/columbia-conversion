@@ -2,8 +2,8 @@
 import sys, traceback
 sys.path.insert(0, '.')
 
-import pandas as pd
-import plotly.graph_objects as go
+import pandas as pd # type: ignore
+import plotly.graph_objects as go # type: ignore
 from src.charts import (
     chart_conversion_donut,
     chart_model_comparison,
