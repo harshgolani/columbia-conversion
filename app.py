@@ -1,10 +1,6 @@
+import json
+import pandas as pd
 import streamlit as st # type: ignore
-from src.analysis import (
-    load_data, business_overview, model_comparison,
-    pagevalues_effect, pagevalues_distribution,
-    monthly_conversion, exit_rate_effect, browsing_depth_effect,
-    recommendations
-)
 from src.charts import (
     chart_conversion_donut, chart_model_comparison,
     chart_pagevalues_effect, chart_monthly_conversion,
@@ -60,20 +56,21 @@ button[data-baseweb="tab"]:hover { color: #c4a090 !important; }
 """, unsafe_allow_html=True)
 
 
-@st.cache_data(show_spinner="Loading dataset...")
-def load():
-    return load_data()
+def load_precomputed():
+    with open('assets/precomputed.json', 'r') as f:
+        data = json.load(f)
+    return (
+        data['overview'],
+        pd.DataFrame(data['models']),
+        pd.DataFrame(data['pv_effect']),
+        data['pv_dist'],
+        pd.DataFrame(data['monthly']),
+        pd.DataFrame(data['exit_rate']),
+        pd.DataFrame(data['browsing']),
+        pd.DataFrame(data['recommendations'])
+    )
 
-
-df = load()
-overview = business_overview(df)
-models = model_comparison()
-pv_effect = pagevalues_effect()
-pv_dist = pagevalues_distribution(df)
-monthly = monthly_conversion(df)
-exit_df = exit_rate_effect()
-browsing_df = browsing_depth_effect()
-recs = recommendations()
+overview, models, pv_effect, pv_dist, monthly, exit_df, browsing_df, recs = load_precomputed()
 
 
 def insight_panel(finding, why, recommendation):
