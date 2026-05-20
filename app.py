@@ -1,5 +1,5 @@
 import json
-import pandas as pd
+import pandas as pd #type: ignore
 import streamlit as st # type: ignore
 from src.charts import (
     chart_conversion_donut, chart_model_comparison,
